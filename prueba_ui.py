@@ -34,7 +34,6 @@ class Thread(QThread):
             try:
                 ret, frame = cap.read()
                 if (ret):
-                    # https://stackoverflow.com/a/55468544/6622587
                     rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                     h, w, ch = rgbImage.shape
                     bytesPerLine = ch * w
