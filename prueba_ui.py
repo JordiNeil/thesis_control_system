@@ -132,3 +132,5 @@ application = dash()
 ##application.show()
 
 sys.exit(app.exec())
+
+GPIO.cleanup()
