@@ -1,16 +1,29 @@
+import cv2
+import logging
+import sys
+
+import RPi.GPIO as GPIO
+
+from dash import Ui_MainWindow
 from PyQt5.QtCore import QThread, Qt, pyqtSignal, pyqtSlot
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtWidgets import  QWidget, QLabel, QApplication, QMainWindow
 
-import logging
+GPIO.setmode(GPIO.BOARD)
+#Válvula A
+GPIO.setup(11, GPIO.OUT)
+#Válvula B
+GPIO.setup(13, GPIO.OUT)
+#Válvula C
+GPIO.setup(15, GPIO.OUT)
+#Válvula D
+GPIO.setup(19, GPIO.OUT)
+#Válvula E
+GPIO.setup(21, GPIO.OUT)
+
+motor = GPIO.PWM(32,100)
 
 logging.getLogger().setLevel(logging.WARNING)
-
-from dash import Ui_MainWindow
-
-import cv2
-
-import sys
 
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
