@@ -27,6 +27,8 @@ GPIO.setup(D, GPIO.OUT)
 #Válvula E
 GPIO.setup(E, GPIO.OUT)
 
+GPIO.setup(32, GPIO.OUT)
+
 motor = GPIO.PWM(32,100)
 
 logging.getLogger().setLevel(logging.WARNING)
