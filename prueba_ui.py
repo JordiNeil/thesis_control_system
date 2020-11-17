@@ -81,16 +81,19 @@ class dash(QMainWindow):
             self.show()
         except Exception as e:
             logging.warning(e)
-            
-    def set_motor_freq1(self, slider_value):
+        
+
+    def get_slider1_value(self, slider_value):
+        self.flect1.setText(str(slider_value))
         GPIO.output(A, True)
         GPIO.output(B, False)
         GPIO.output(C, True)
         GPIO.output(D, False)
         GPIO.output(E, False)        
         motor.ChangeDutyCycle(slider_value)
-        
-    def set_motor_freq2(self, slider_value):
+    
+    def get_slider2_value(self, slider_value):
+        self.flect2.setText(str(slider_value))
         GPIO.output(A, False)
         GPIO.output(B, True)
         GPIO.output(C, False)
@@ -98,22 +101,14 @@ class dash(QMainWindow):
         GPIO.output(E, True)        
         motor.ChangeDutyCycle(slider_value)
 
-    def set_motor_freq3(self, slider_value):
+    def get_slider3_value(self, slider_value):
+        self.flect3.setText(str(slider_value))
         GPIO.output(A, False)
         GPIO.output(B, True)
         GPIO.output(C, False)
         GPIO.output(D, True)
         GPIO.output(E, False)        
         motor.ChangeDutyCycle(slider_value)
-
-    def get_slider1_value(self, value_of_slider):
-        self.flect1.setText(str(value_of_slider))
-    
-    def get_slider2_value(self, value_of_slider):
-        self.flect2.setText(str(value_of_slider))
-
-    def get_slider3_value(self, value_of_slider):
-        self.flect3.setText(str(value_of_slider))
 
     @pyqtSlot(QImage)
     def setImage(self, image):
