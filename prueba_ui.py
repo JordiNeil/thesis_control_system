@@ -48,7 +48,7 @@ class Thread(QThread):
 class dash(QMainWindow):
     def __init__(self):
         super(dash, self).__init__()
-
+        motor.start(0)
         try:
 
             self.ui = Ui_MainWindow()
@@ -69,10 +69,16 @@ class dash(QMainWindow):
             self.ui.verticalSlider.valueChanged.connect(self.get_slider1_value)
             self.ui.verticalSlider_2.valueChanged.connect(self.get_slider2_value)
             self.ui.verticalSlider_3.valueChanged.connect(self.get_slider3_value)
-        
+            self.ui.verticalSlider.valueChanged.connect(self.set_motor_freq)
+            self.ui.verticalSlider_2.valueChanged.connect(self.get_slider2_value)
+            self.ui.verticalSlider_3.valueChanged.connect(self.get_slider3_value)
+            
             self.show()
         except Exception as e:
             logging.warning(e)
+            
+    def set_motor_freq(self, slider_value):
+        motor.ChangeDutyCycle(slider_value)
         
 
     def get_slider1_value(self, value_of_slider):
