@@ -76,9 +76,6 @@ class dash(QMainWindow):
             self.ui.verticalSlider.valueChanged.connect(self.get_slider1_value)
             self.ui.verticalSlider_2.valueChanged.connect(self.get_slider2_value)
             self.ui.verticalSlider_3.valueChanged.connect(self.get_slider3_value)
-            self.ui.verticalSlider.valueChanged.connect(self.set_motor_freq1)
-            self.ui.verticalSlider_2.valueChanged.connect(self.set_motor_freq2)
-            self.ui.verticalSlider_3.valueChanged.connect(self.set_motor_freq3)
             
             self.show()
         except Exception as e:
