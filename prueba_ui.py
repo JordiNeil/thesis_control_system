@@ -86,7 +86,8 @@ class dash(QMainWindow):
         GPIO.output(B, False)
         GPIO.output(C, True)
         GPIO.output(D, False)
-        GPIO.output(E, False)        
+        GPIO.output(E, False)
+        logging.warning(str(slider_value))
         motor.ChangeDutyCycle(slider_value)
     
     def get_slider2_value(self, slider_value):
@@ -95,7 +96,8 @@ class dash(QMainWindow):
         GPIO.output(B, True)
         GPIO.output(C, False)
         GPIO.output(D, False)
-        GPIO.output(E, True)        
+        GPIO.output(E, True)
+        logging.warning(str(slider_value))
         motor.ChangeDutyCycle(slider_value)
 
     def get_slider3_value(self, slider_value):
@@ -104,7 +106,8 @@ class dash(QMainWindow):
         GPIO.output(B, True)
         GPIO.output(C, False)
         GPIO.output(D, True)
-        GPIO.output(E, False)        
+        GPIO.output(E, False)
+        logging.warning(str(slider_value))      
         motor.ChangeDutyCycle(slider_value)
 
     @pyqtSlot(QImage)
