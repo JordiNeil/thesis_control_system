@@ -11,15 +11,21 @@ from PyQt5.QtWidgets import  QWidget, QLabel, QApplication, QMainWindow
 
 GPIO.setmode(GPIO.BOARD)
 #Válvula A
-GPIO.setup(11, GPIO.OUT)
+A = 11
+B = 13
+C = 15
+D = 19
+E = 21
+
+GPIO.setup(A, GPIO.OUT)
 #Válvula B
-GPIO.setup(13, GPIO.OUT)
+GPIO.setup(B, GPIO.OUT)
 #Válvula C
-GPIO.setup(15, GPIO.OUT)
+GPIO.setup(C, GPIO.OUT)
 #Válvula D
-GPIO.setup(19, GPIO.OUT)
+GPIO.setup(D, GPIO.OUT)
 #Válvula E
-GPIO.setup(21, GPIO.OUT)
+GPIO.setup(E, GPIO.OUT)
 
 motor = GPIO.PWM(32,100)
 
@@ -68,17 +74,37 @@ class dash(QMainWindow):
             self.ui.verticalSlider.valueChanged.connect(self.get_slider1_value)
             self.ui.verticalSlider_2.valueChanged.connect(self.get_slider2_value)
             self.ui.verticalSlider_3.valueChanged.connect(self.get_slider3_value)
-            self.ui.verticalSlider.valueChanged.connect(self.set_motor_freq)
-            self.ui.verticalSlider_2.valueChanged.connect(self.get_slider2_value)
-            self.ui.verticalSlider_3.valueChanged.connect(self.get_slider3_value)
+            self.ui.verticalSlider.valueChanged.connect(self.set_motor_freq1)
+            self.ui.verticalSlider_2.valueChanged.connect(self.set_motor_freq2)
+            self.ui.verticalSlider_3.valueChanged.connect(self.set_motor_freq3)
             
             self.show()
         except Exception as e:
             logging.warning(e)
             
-    def set_motor_freq(self, slider_value):
+    def set_motor_freq1(self, slider_value):
+        GPIO.output(A, True)
+        GPIO.output(B, False)
+        GPIO.output(C, True)
+        GPIO.output(D, False)
+        GPIO.output(E, False)        
         motor.ChangeDutyCycle(slider_value)
         
+    def set_motor_freq2(self, slider_value):
+        GPIO.output(A, False)
+        GPIO.output(B, True)
+        GPIO.output(C, False)
+        GPIO.output(D, False)
+        GPIO.output(E, True)        
+        motor.ChangeDutyCycle(slider_value)
+
+    def set_motor_freq3(self, slider_value):
+        GPIO.output(A, False)
+        GPIO.output(B, True)
+        GPIO.output(C, False)
+        GPIO.output(D, True)
+        GPIO.output(E, False)        
+        motor.ChangeDutyCycle(slider_value)
 
     def get_slider1_value(self, value_of_slider):
         self.flect1.setText(str(value_of_slider))
