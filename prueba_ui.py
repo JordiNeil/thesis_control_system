@@ -55,6 +55,11 @@ class Thread(QThread):
 class dash(QMainWindow):
     def __init__(self):
         super(dash, self).__init__()
+        GPIO.output(A, True)
+        GPIO.output(B, True)
+        GPIO.output(C, True)
+        GPIO.output(D, True)
+        GPIO.output(E, True)
         motor.start(0)
         try:
 
@@ -84,33 +89,33 @@ class dash(QMainWindow):
 
     def get_slider1_value(self, slider_value):
         self.flect1.setText(str(slider_value))
-        GPIO.output(A, True)
-        GPIO.output(B, False)
-        GPIO.output(C, True)
-        GPIO.output(D, False)
-        GPIO.output(E, False)
-        logging.warning(str(slider_value))
-        motor.ChangeDutyCycle(slider_value)
-    
-    def get_slider2_value(self, slider_value):
-        self.flect2.setText(str(slider_value))
-        GPIO.output(A, False)
-        GPIO.output(B, True)
-        GPIO.output(C, False)
-        GPIO.output(D, False)
-        GPIO.output(E, True)
-        logging.warning(str(slider_value))
-        motor.ChangeDutyCycle(slider_value)
-
-    def get_slider3_value(self, slider_value):
-        self.flect3.setText(str(slider_value))
         GPIO.output(A, False)
         GPIO.output(B, True)
         GPIO.output(C, False)
         GPIO.output(D, True)
+        GPIO.output(E, True)
+        logging.warning(str(slider_value))
+        motor.ChangeDutyCycle(1/(slider_value+1))
+    
+    def get_slider2_value(self, slider_value):
+        self.flect2.setText(str(slider_value))
+        GPIO.output(A, True)
+        GPIO.output(B, False)
+        GPIO.output(C, True)
+        GPIO.output(D, True)
         GPIO.output(E, False)
+        logging.warning(str(slider_value))
+        motor.ChangeDutyCycle(1/(slider_value+1))
+
+    def get_slider3_value(self, slider_value):
+        self.flect3.setText(str(slider_value))
+        GPIO.output(A, True)
+        GPIO.output(B, False)
+        GPIO.output(C, True)
+        GPIO.output(D, False)
+        GPIO.output(E, True)
         logging.warning(str(slider_value))      
-        motor.ChangeDutyCycle(slider_value)
+        motor.ChangeDutyCycle(1/(slider_value+1))
 
     @pyqtSlot(QImage)
     def setImage(self, image):
