@@ -27,9 +27,9 @@ GPIO.setup(D, GPIO.OUT)
 #Válvula E
 GPIO.setup(E, GPIO.OUT)
 
-GPIO.setup(32, GPIO.OUT)
+GPIO.setup(36, GPIO.OUT)
 
-motor = GPIO.PWM(32,100)
+motor = GPIO.PWM(36,100)
 
 logging.getLogger().setLevel(logging.WARNING)
 
@@ -60,7 +60,7 @@ class dash(QMainWindow):
         GPIO.output(C, True)
         GPIO.output(D, True)
         GPIO.output(E, True)
-        motor.start(0)
+        motor.start(100)
         try:
 
             self.ui = Ui_MainWindow()
@@ -87,35 +87,35 @@ class dash(QMainWindow):
             logging.warning(e)
         
 
-    def get_slider1_value(self, slider_value):
-        self.flect1.setText(str(slider_value))
+    def get_slider1_value(self, slider_value1):
+        self.flect1.setText(str(slider_value1))
         GPIO.output(A, False)
         GPIO.output(B, True)
         GPIO.output(C, False)
         GPIO.output(D, True)
         GPIO.output(E, True)
-        logging.warning(str(slider_value))
-        motor.ChangeDutyCycle(1/(slider_value+1))
+        logging.warning(str(float(slider_value1)))
+        motor.ChangeDutyCycle(float(100-slider_value1))
     
-    def get_slider2_value(self, slider_value):
-        self.flect2.setText(str(slider_value))
+    def get_slider2_value(self, slider_value2):
+        self.flect2.setText(str(slider_value2))
         GPIO.output(A, True)
         GPIO.output(B, False)
         GPIO.output(C, True)
         GPIO.output(D, True)
         GPIO.output(E, False)
-        logging.warning(str(slider_value))
-        motor.ChangeDutyCycle(1/(slider_value+1))
+        logging.warning(str(float(slider_value2)))
+        motor.ChangeDutyCycle(float(100-slider_value2))
 
-    def get_slider3_value(self, slider_value):
-        self.flect3.setText(str(slider_value))
+    def get_slider3_value(self, slider_value3):
+        self.flect3.setText(str(slider_value3))
         GPIO.output(A, True)
         GPIO.output(B, False)
         GPIO.output(C, True)
         GPIO.output(D, False)
         GPIO.output(E, True)
-        logging.warning(str(slider_value))      
-        motor.ChangeDutyCycle(1/(slider_value+1))
+        logging.warning(str(float(slider_value3)))      
+        motor.ChangeDutyCycle(float(100-slider_value3))
 
     @pyqtSlot(QImage)
     def setImage(self, image):
@@ -132,5 +132,9 @@ application = dash()
 ##application.show()
 
 sys.exit(app.exec())
-
+GPIO.output(A, True)
+GPIO.output(B, True)
+GPIO.output(C, True)
+GPIO.output(D, True)
+GPIO.output(E, True)
 GPIO.cleanup()
