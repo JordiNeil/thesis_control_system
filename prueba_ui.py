@@ -29,7 +29,7 @@ GPIO.setup(E, GPIO.OUT)
 
 GPIO.setup(36, GPIO.OUT)
 
-motor = GPIO.PWM(36,0)
+motor = GPIO.PWM(36,0.1)
 
 logging.getLogger().setLevel(logging.WARNING)
 
@@ -60,12 +60,15 @@ class dash(QMainWindow):
         GPIO.output(C, True)
         GPIO.output(D, True)
         GPIO.output(E, True)
-        motor.start(100)
+        motor.start(0)
         try:
 
             self.ui = Ui_MainWindow()
-
             self.ui.setupUi(self)
+            self.label1 = QLabel(self)
+            self.label1.move(130, 240)
+            self.label1.resize(210, 240)
+            self.label1.setText("Flexión")
             self.label = QLabel(self)
             self.label.move(450, 120)
             self.label.resize(350, 240)
@@ -73,11 +76,11 @@ class dash(QMainWindow):
             th.changePixmap.connect(self.setImage)
             th.start()
             self.flect1 = QLabel(self)
-            self.flect1.move(50, 130)
+            self.flect1.move(50, 290)
             self.flect2 = QLabel(self)
-            self.flect2.move(130, 130)
+            self.flect2.move(130, 290)
             self.flect3 = QLabel(self)
-            self.flect3.move(210, 130)
+            self.flect3.move(210, 290)
             self.ui.verticalSlider.valueChanged.connect(self.get_slider1_value)
             self.ui.verticalSlider_2.valueChanged.connect(self.get_slider2_value)
             self.ui.verticalSlider_3.valueChanged.connect(self.get_slider3_value)
@@ -88,7 +91,7 @@ class dash(QMainWindow):
         
 
     def get_slider1_value(self, slider_value1):
-        self.flect1.setText(str(slider_value1))
+        self.flect1.setText(str(slider_value1)+"%")
         GPIO.output(A, False)
         GPIO.output(B, True)
         GPIO.output(C, False)
@@ -98,7 +101,7 @@ class dash(QMainWindow):
         motor.ChangeDutyCycle(float(slider_value1))
     
     def get_slider2_value(self, slider_value2):
-        self.flect2.setText(str(slider_value2))
+        self.flect2.setText(str(slider_value2)+"%")
         GPIO.output(A, True)
         GPIO.output(B, False)
         GPIO.output(C, True)
@@ -108,7 +111,7 @@ class dash(QMainWindow):
         motor.ChangeDutyCycle(float(slider_value2))
 
     def get_slider3_value(self, slider_value3):
-        self.flect3.setText(str(slider_value3))
+        self.flect3.setText(str(slider_value3)+"%")
         GPIO.output(A, True)
         GPIO.output(B, False)
         GPIO.output(C, True)

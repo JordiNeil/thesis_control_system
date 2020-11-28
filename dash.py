@@ -22,7 +22,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider.setObjectName("horizontalSlider")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(20, 120, 241, 201))
+        self.groupBox.setGeometry(QtCore.QRect(20, 110, 241, 201))
         self.groupBox.setObjectName("groupBox")
         self.verticalSlider = QtWidgets.QSlider(self.groupBox)
         self.verticalSlider.setGeometry(QtCore.QRect(30, 30, 22, 160))
@@ -40,7 +40,7 @@ class Ui_MainWindow(object):
         self.graphicsView.setGeometry(QtCore.QRect(510, 130, 256, 192))
         self.graphicsView.setObjectName("graphicsView")
         self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox.setGeometry(QtCore.QRect(340, 200, 70, 17))
+        self.checkBox.setGeometry(QtCore.QRect(340, 200, 150, 100))
         self.checkBox.setObjectName("checkBox")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(180, 0, 421, 81))
@@ -74,7 +74,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.groupBox.setTitle(_translate("MainWindow", "Primer módulo"))
-        self.checkBox.setText(_translate("MainWindow", "Move"))
+        self.checkBox.setText(_translate("MainWindow", "Desplazar"))
         self.label.setText(_translate("MainWindow", "Systema de control \n"
 "para endoscopio basado en robótica suave"))
         self.label_2.setText(_translate("MainWindow", "Cámara"))

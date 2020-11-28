@@ -99,7 +99,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Move</string>
+     <string>Desplazamiento</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
