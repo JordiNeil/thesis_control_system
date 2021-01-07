@@ -75,6 +75,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.groupBox.setTitle(_translate("MainWindow", "Primer módulo"))
         self.checkBox.setText(_translate("MainWindow", "Move"))
-        self.label.setText(_translate("MainWindow", "Systema de control \n"
+        self.label.setText(_translate("MainWindow", "Sistema de control \n"
 "para endoscopio basado en robótica suave"))
         self.label_2.setText(_translate("MainWindow", "Cámara"))

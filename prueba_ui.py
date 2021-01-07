@@ -74,13 +74,13 @@ class Movement(QObject):
         self.paso_2()
         QCoreApplication.processEvents()
         print("sleep2")
-        time.sleep(1)
+        time.sleep(2.5)
         QCoreApplication.processEvents()
         print("paso3")
         self.paso_3()
         QCoreApplication.processEvents()
         print("sleep3")
-        time.sleep(1)
+        time.sleep(2)
         QCoreApplication.processEvents()
         print("paso4")
         self.paso_4()
@@ -100,46 +100,55 @@ class Movement(QObject):
         GPIO.output(C, False)
         GPIO.output(D, False)
         GPIO.output(E, False)
+        motor.ChangeDutyCycle(0)
+        motor2.ChangeDutyCycle(0)
+        print("Stop")
         
     def paso_1(self):
         self.activar_salida_1()
+        motor.ChangeDutyCycle(30)
         
     def paso_2(self):
         self.activar_elongacion()
         
     def paso_3(self):
         self.activar_salida_3()
+        motor.ChangeDutyCycle(20)
         
     def paso_4(self):
         self.desactivar_elongacion()
         
     def activar_elongacion(self):
-        motor2.ChangeDutyCycle(50)
+        motor2.ChangeDutyCycle(35)
+        GPIO.output(E, True)
     
     def desactivar_elongacion(self):
         motor2.ChangeDutyCycle(0)
-        
-    def activar_salida_1(self):
-        GPIO.output(A, False)
-        GPIO.output(B, True)
-        GPIO.output(C, False)
-        GPIO.output(D, True)
-        GPIO.output(E, True)
-        
-    def activar_salida_2(self):
-        GPIO.output(A, True)
-        GPIO.output(B, False)
-        GPIO.output(C, True)
-        GPIO.output(D, True)
         GPIO.output(E, False)
         
-    def activar_salida_3(self):
+    def activar_salida_1(self):
         GPIO.output(A, True)
         GPIO.output(B, False)
         GPIO.output(C, True)
         GPIO.output(D, False)
-        GPIO.output(E, True)
+        GPIO.output(E, False)
+        print("A, C")
         
+    def activar_salida_2(self):
+        GPIO.output(A, False)
+        GPIO.output(B, True)
+        GPIO.output(C, False)
+        GPIO.output(D, False)
+        GPIO.output(E, True)
+        print("A, C, D")
+        
+    def activar_salida_3(self):
+        GPIO.output(A, False)
+        GPIO.output(B, True)
+        GPIO.output(C, False)
+        GPIO.output(D, False)
+        GPIO.output(E, True)
+        print("A, C, E")
             
 
 class dash(QMainWindow):
@@ -217,25 +226,25 @@ class dash(QMainWindow):
         motor2.ChangeDutyCycle(0)
         
     def activar_salida_1(self):
-        GPIO.output(A, False)
-        GPIO.output(B, True)
-        GPIO.output(C, False)
-        GPIO.output(D, True)
-        GPIO.output(E, True)
-        
-    def activar_salida_2(self):
-        GPIO.output(A, True)
-        GPIO.output(B, False)
-        GPIO.output(C, True)
-        GPIO.output(D, True)
-        GPIO.output(E, False)
-        
-    def activar_salida_3(self):
         GPIO.output(A, True)
         GPIO.output(B, False)
         GPIO.output(C, True)
         GPIO.output(D, False)
+        GPIO.output(E, False)
+        
+    def activar_salida_2(self):
+        GPIO.output(A, False)
+        GPIO.output(B, True)
+        GPIO.output(C, False)
+        GPIO.output(D, False)
         GPIO.output(E, True)
+        
+    def activar_salida_3(self):
+        GPIO.output(A, False)
+        GPIO.output(B, True)
+        GPIO.output(C, False)
+        GPIO.output(D, True)
+        GPIO.output(E, False)
         
 
     def get_slider1_value(self, slider_value):
